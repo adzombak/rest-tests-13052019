@@ -39,8 +39,8 @@ public class WeatherTest {
                 .then()
                 .log().all()
                 .statusCode(200);
-//        String WeatherKeyValues = responseWeather.extract().asString();
-//        System.out.println(WeatherKeyValues);
+        String WeatherKeyValues = responseWeather.extract().asString();
+        System.out.println(WeatherKeyValues);
 
     }
 }
