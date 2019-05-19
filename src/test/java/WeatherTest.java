@@ -24,7 +24,7 @@ public class WeatherTest {
         String cityId = response.extract().asString();
         System.out.println(cityId);
         idOfCity = cityId.substring(cityId.lastIndexOf("|") + 1);
-        System.out.println(idOfCity);
+        //System.out.println(idOfCity);
 
 
 //    @Test
