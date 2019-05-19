@@ -5,7 +5,7 @@ import org.junit.Test;
 
 public class WeatherTest {
 
-    String idOfCity;
+    String cityId;
 
     @Test
     public void getWeatherPerCityTest() {
@@ -18,29 +18,45 @@ public class WeatherTest {
                 //.log().uri()
                 .get()
                 .then()
-                //.log().all()
+                //Met.log().all()
                 .statusCode(200);
 
-        String cityId = response.extract().asString();
-        System.out.println(cityId);
-        idOfCity = cityId.substring(cityId.lastIndexOf("|") + 1);
-        //System.out.println(idOfCity);
+        String cityInfo = response.extract().asString();
+        cityId = cityInfo.substring(cityInfo.lastIndexOf("|") + 1);
+        System.out.println("City id = " + cityId);
 
 
-//    @Test
-//    public void getWeatherById () {
+
+        //get response with known ID
         RestAssured.baseURI = "https://pinformer.sinoptik.ua/pinformer4.php";
 
         ValidatableResponse responseWeather = RestAssured.given()
                .param("type", "js")
                 .param("lang", "ua")
-                .param("id", idOfCity)
+                .param("id", cityId)
+                .get()
+                .then()
+                .log().all()
+                .statusCode(200);
+
+        //String WeatherKeyValues = responseWeather.extract().asString();
+        //temp = WeatherKeyValues.indexOf("temp")
+        //System.out.println(WeatherKeyValues);
+
+    }
+
+    @Test
+    public void postFastLoan() {
+        RestAssured.baseURI = "https://fastloansystem.com/api/token";
+
+        ValidatableResponse response = RestAssured.given()
+                .param("login", "tehnoskarb_new_market")
+                .param("password", "hdu5K8hsu")
+                .param("grant_type", "password")
                 .post()
                 .then()
                 .log().all()
                 .statusCode(200);
-        String WeatherKeyValues = responseWeather.extract().asString();
-        System.out.println(WeatherKeyValues);
 
     }
 }
