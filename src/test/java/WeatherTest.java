@@ -37,7 +37,7 @@ public class WeatherTest {
                 .param("id", idOfCity)
                 .post()
                 .then()
-                //.log().all()
+                .log().all()
                 .statusCode(200);
 //        String WeatherKeyValues = responseWeather.extract().asString();
 //        System.out.println(WeatherKeyValues);
