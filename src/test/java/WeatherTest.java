@@ -1,7 +1,9 @@
 import io.restassured.RestAssured;
 import io.restassured.response.ValidatableResponse;
-import io.restassured.specification.RequestSpecification;
+//import io.restassured.specification.RequestSpecification;
 import org.junit.Test;
+
+import static org.hamcrest.Matchers.is;
 
 public class WeatherTest {
 
@@ -9,12 +11,13 @@ public class WeatherTest {
 
     @Test
     public void getWeatherPerCityTest() {
-        RestAssured.baseURI = "https://pinformer.sinoptik.ua/search.php";
+        RestAssured.baseURI = "https://pinformer.sinoptik.ua/";
 
         ValidatableResponse response = RestAssured.given()
                 .param("Lang", "ua")
                 .param("return_id", "1")
                 .param("q", "Lviv")
+                .basePath("/search.php")
                 //.log().uri()
                 .get()
                 .then()
@@ -28,16 +31,19 @@ public class WeatherTest {
 
 
         //get response with known ID
-        RestAssured.baseURI = "https://pinformer.sinoptik.ua/pinformer4.php";
+        RestAssured.baseURI = "https://pinformer.sinoptik.ua/";
 
         ValidatableResponse responseWeather = RestAssured.given()
-               .param("type", "js")
+                .param("type", "js")
                 .param("lang", "ua")
                 .param("id", cityId)
+                .basePath("/pinformer4.php")
                 .get()
                 .then()
                 .log().all()
-                .statusCode(200);
+                .statusCode(200)
+                .body("any { it.key == '{pcity}' }", is(true)) //Groovy path with hamcrest matchers
+                .body("'{pcity}'", is(cityId)); //is(not(1)) -- JSON path with humcrast matchers
 
         //String WeatherKeyValues = responseWeather.extract().asString();
         //temp = WeatherKeyValues.indexOf("temp")
