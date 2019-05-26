@@ -1,13 +1,13 @@
 import io.restassured.RestAssured;
 import io.restassured.response.ValidatableResponse;
-//import io.restassured.specification.RequestSpecification;
+import io.restassured.specification.RequestSpecification;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.is;
 
 public class WeatherTest {
 
-    String cityId;
+    private String cityId;
 
     @Test
     public void getWeatherPerCityTest() {
