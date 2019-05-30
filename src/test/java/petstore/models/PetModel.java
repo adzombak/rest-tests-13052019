@@ -1,24 +1,6 @@
 package petstore.models;
 
 public class PetModel {
-//    String requestBody = "{\n" +
-//            "  \"id\": 12032705,\n" +
-//            "  \"category\": {\n" +
-//            "    \"id\": 0,\n" +
-//            "    \"name\": \"string\"\n" +
-//            "  },\n" +
-//            "  \"name\": \"tobby\",\n" +
-//            "  \"photoUrls\": [\n" +
-//            "    \"string\"\n" +
-//            "  ],\n" +
-//            "  \"tags\": [\n" +
-//            "    {\n" +
-//            "      \"id\": 0,\n" +
-//            "      \"name\": \"string\"\n" +
-//            "    }\n" +
-//            "  ],\n" +
-//            "  \"status\": \"available\"\n" +
-//            "}";
 
     private int id;
     private CategoryModel category;
@@ -31,24 +13,48 @@ public class PetModel {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public CategoryModel getCategory() {
         return category;
+    }
+
+    public void setCategory(CategoryModel category) {
+        this.category = category;
     }
 
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String[] getPhotoUrls() {
         return photoUrls;
+    }
+
+    public void setPhotoUrls(String[] photoUrls) {
+        this.photoUrls = photoUrls;
     }
 
     public TagModel[] getTags() {
         return tags;
     }
 
+    public void setTags(TagModel[] tags) {
+        this.tags = tags;
+    }
+
     public String getStatus() {
         return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public PetModel(int id, CategoryModel category, String name, String[] photoUrls, TagModel[] tags, String status) {

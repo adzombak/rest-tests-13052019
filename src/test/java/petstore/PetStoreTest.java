@@ -1,6 +1,11 @@
 package petstore;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.RestAssured;
+import io.restassured.internal.RequestSpecificationImpl;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+import org.apache.http.client.methods.RequestBuilder;
 import org.junit.Test;
 import petstore.models.CategoryModel;
 import petstore.models.PetModel;
@@ -21,16 +26,37 @@ public class PetStoreTest {
         SOLD
     }
 
+    //RequestSpecification requestSpec = new RequestBuilder();
+
+
     @Test
-    public void getPetbyIdTest() {
+    public void getPetByIdTest() {
 
             RestAssured.given()
-                    .pathParam("petID", Config.petID)
+                    .pathParam("petID", "12033005")
                     .get(Config.GET_PET_BY_ID)
                     .then()
                     .log().all()
                     .statusCode(200);
+
+
+
+
         }
+
+
+    @Test
+    public void deletePetbyId () {
+
+        RestAssured.given()
+                .pathParam("petID", "12033005")
+                .delete(Config.DELETE_PET_BY_ID)
+                .then()
+                .log().all()
+                .statusCode(200);
+
+
+    }
 
     @Test
     public void createPetTest() {
@@ -45,7 +71,7 @@ public class PetStoreTest {
         RestAssured.given()
                 .log().uri()
                 //.header("Content-Type", "application/json")
-                .contentType("application/xml")
+                .contentType("application/json")
                 .body(petModel)
                 .post(Config.CREATE_PET)
                 .then()
@@ -53,20 +79,6 @@ public class PetStoreTest {
                 .statusCode(200);
     }
 
-    @Test
-    public void deletePetbyId () {
-
-            RestAssured.given()
-                   .pathParam("petID", Config.petID)
-                   .delete(Config.DELETE_PET_BY_ID)
-                   .then()
-                   .log().all();
-                   //.log().status();
-                   //.header()
-                   //System.out.println(response.statusCode());
-
-
-        }
 
     @Test
     public void getPetbyStatus() {
@@ -86,14 +98,41 @@ public class PetStoreTest {
 
 
 
-//    Response response = RestAssured.given().get(petstore.Config.GET_PET_BY_STATUS).thenReturn();
-//    ResponseBody body = response.getBody();
-//        System.out.println(body);
-//                System.out.println(body.prettyPrint());
-//System.out.println(response.prettyPrint());
 //
-//JSONObject data = new JSONObject(response);
-//System.out.println(data);
+//@Test
+//    public void getPetMessageBody()
+//    {
+//        //RestAssured.baseURI = "http://restapi.demoqa.com/utilities/weather/city";
+////        RequestSpecification getPetByIdResponse = RestAssured.given().pathParam("petID", Config.petID);
+////        Response response = getPetByIdResponse.get(Config.GET_PET_BY_ID);
 //
-//JSONArray ja = new JSONArray(response.print());
-//System.out.println(ja);
+//        Object response = RestAssured.given().pathParam("petID", Config.petID).get(Config.GET_PET_BY_ID).then().extract().body().jsonPath().get("name");
+//
+//        System.out.println(response);
+//        //ValidatableResponse response = getPetByIdResponse.get(Config.GET_PET_BY_ID).then().log().all();
+//
+//
+//
+//        // Retrieve the body of the Response
+//
+//
+////        JsonPath petNamePath = response.jsonPath();
+////
+////        String petName = petNamePath.get("name");
+////
+////        System.out.println(petName);
+//
+//        //return petName;
+//
+//        //Assert.assertEquals("NewTobby", petName);
+//
+//        // To check for sub string presence get the Response body as a String.
+//        // Do a String.contains
+//        //String bodyAsString = body.asString();
+//        //Assert.assertEquals(bodyAsString.contains("Hyderabad") /*Expected value*/, true /*Actual Value*/, "Response body contains Hyderabad");
+//    }
+//
+
+
+
+
