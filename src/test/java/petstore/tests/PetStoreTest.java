@@ -1,6 +1,9 @@
 package petstore.tests;
 
+import net.serenitybdd.junit.runners.SerenityRunner;
+import net.thucydides.core.annotations.Steps;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import petstore.endpoints.PetEndPoint;
 import petstore.endpoints.StoreEndPoint;
 import petstore.models.CategoryModel;
@@ -10,9 +13,9 @@ import java.lang.String;
 
 import static org.hamcrest.core.Is.is;
 
-
+@RunWith(SerenityRunner.class)
 public class PetStoreTest {
-
+@Steps
     private PetEndPoint petEndpoint = new PetEndPoint();
     private StoreEndPoint storeEndPoint = new StoreEndPoint();
     private PetModel petModel;
@@ -75,7 +78,7 @@ public class PetStoreTest {
 
     @Test
     public void getOrderByIdTest(){
-int Id = 12033005;
+int Id = 13;
         storeEndPoint.getOrderByIdTest(Id)
                 .statusCode(200)
                 .body("size()",is(6));

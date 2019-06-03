@@ -3,7 +3,6 @@ package petstore.tests;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import petstore.endpoints.PetEndPoint;
 import petstore.endpoints.StoreEndPoint;
 import petstore.models.OrderModel;
 
@@ -11,14 +10,13 @@ import static org.hamcrest.core.Is.is;
 
 public class PetOrderTest {
     private StoreEndPoint storeEndPoint = new StoreEndPoint();
-    private PetEndPoint petEndpoint = new PetEndPoint();
     private OrderModel orderModel;
 
 
     @Before
-    public void createOrderTest(){
+    public void preCondition(){
         orderModel = new OrderModel(
-                12033005,
+                13,
                 12033005,
                 2,
                 "2019-06-03T04:56:15.934+0000",
@@ -30,7 +28,7 @@ public class PetOrderTest {
                 .createOrderTest(orderModel)
                 .statusCode(200)
                 .body("size()",is(6))
-                .body("any{it.value == 12033005}", is(true));
+                .body("id", is(orderModel.getId()));
 
     }
 
@@ -39,20 +37,38 @@ public class PetOrderTest {
         storeEndPoint
                 .deleteOrderTest(orderModel.getId())
                 .statusCode(200);
-//        storeEndPoint.getOrderByIdTest(orderModel.getId())
-//                .statusCode(404)
-//                .body("any{it.value == 'Pet not found'}", is(true));
     }
 
 
     @Test
-    public void getOrderByPetIdTest(){
-
+    public void getOrderByIdTest(){
         storeEndPoint.getOrderByIdTest(orderModel.getId())
                 .statusCode(200)
                 .body("size()",is(6))
-                .body("any{it.value == 'placed'}", is(true));
-        storeEndPoint.getOrderByPetIdTest(orderModel.getPetId())
-                .statusCode(200);
+                .body("status", is("placed"));
     }
 }
+
+
+
+
+//    @Test
+//    public void getOrderByPetIdTest(){
+//        int petId = orderModel.getPetId();
+////        storeEndPoint.getOrderByIdTest(orderModel.getId())
+////                .statusCode(200)
+////                .body("size()",is(6))
+////                .body("status", is("placed"));
+//        storeEndPoint.getOrderByPetIdTest(petId)
+//                .statusCode(200);
+//    }
+
+//    @After
+//    public void posCondition() {
+//        storeEndPoint
+//                .deleteOrderTest(orderModel.getId())
+//                .statusCode(200);
+////        storeEndPoint.getOrderByIdTest(orderModel.getId())
+////                .statusCode(404)
+////                .body("any{it.value == 'Pet not found'}", is(true));
+//    }

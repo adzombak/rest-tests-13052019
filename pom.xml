@@ -11,11 +11,25 @@
     <dependencies>
         <!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
         <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>rest-assured</artifactId>
-            <version>4.0.0</version>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-rest-assured</artifactId>
+            <version>2.0.50</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/net.serenity-bdd/serenity-junit -->
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-junit</artifactId>
+            <version>2.0.50</version>
+        </dependency>
+
+        <!-- to enable Serenity logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.26</version>
             <scope>test</scope>
         </dependency>
+
 
         <!-- https://mvnrepository.com/artifact/org.testinfected.hamcrest-matchers/all-matchers -->
         <dependency>

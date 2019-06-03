@@ -1,7 +1,10 @@
 package petstore.tests;
 
 import io.restassured.RestAssured;
+import net.serenitybdd.junit.runners.SerenityRunner;
+import net.thucydides.core.annotations.Steps;
 import org.junit.*;
+import org.junit.runner.RunWith;
 import petstore.endpoints.PetEndPoint;
 import petstore.models.CategoryModel;
 import petstore.models.PetModel;
@@ -9,8 +12,9 @@ import petstore.models.TagModel;
 
 import static org.hamcrest.core.Is.is;
 
-
+@RunWith(SerenityRunner.class)
 public class PetUpdateTest {
+    @Steps
     private PetEndPoint petEndpoint = new PetEndPoint();
     private PetModel petModel;
 

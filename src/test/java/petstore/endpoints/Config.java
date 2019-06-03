@@ -6,8 +6,7 @@ class Config {
     static int petID = 12032705;
     static int petIdForUpdate = 12033005;
 
-//    String getPetID = "12032705";
-//    String deletePetID = "12032705";
+
 
     final static String GET_PET_BY_ID = "pet/{petID}";
     final static String CREATE_PET = "pet";
@@ -18,5 +17,4 @@ class Config {
     final static String CREATE_ORDER = "/store/order";
     final static String DELETE_ORDER = "/store/order/{orderId}";
     final static String FIND_ORDER_BY_ID = "/store/order/{orderId}";
-
 }
