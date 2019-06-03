@@ -1,100 +1,90 @@
-package petstore;
+package petstore.tests;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import io.restassured.RestAssured;
-import io.restassured.internal.RequestSpecificationImpl;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
-import org.apache.http.client.methods.RequestBuilder;
 import org.junit.Test;
+import petstore.endpoints.PetEndPoint;
+import petstore.endpoints.StoreEndPoint;
 import petstore.models.CategoryModel;
 import petstore.models.PetModel;
 import petstore.models.TagModel;
 import java.lang.String;
 
+import static org.hamcrest.core.Is.is;
 
 
 public class PetStoreTest {
 
-    static  {
-        RestAssured.baseURI = Config.BASE_URI;
-    }
-
-    private enum status{
-        AVAILABLE,
-        PENDING,
-        SOLD
-    }
-
-    //RequestSpecification requestSpec = new RequestBuilder();
-
+    private PetEndPoint petEndpoint = new PetEndPoint();
+    private StoreEndPoint storeEndPoint = new StoreEndPoint();
+    private PetModel petModel;
 
     @Test
     public void getPetByIdTest() {
+        int petId = 12033005;
+        petEndpoint
+                .getPetByIdTest(petId);
 
-            RestAssured.given()
-                    .pathParam("petID", "12033005")
-                    .get(Config.GET_PET_BY_ID)
-                    .then()
-                    .log().all()
-                    .statusCode(200);
-
-
-
-
-        }
-
+    }
 
     @Test
-    public void deletePetbyId () {
-
-        RestAssured.given()
-                .pathParam("petID", "12033005")
-                .delete(Config.DELETE_PET_BY_ID)
-                .then()
-                .log().all()
-                .statusCode(200);
-
-
+    public void getPetByStatusTest() {
+        for (PetEndPoint.Status status : PetEndPoint.Status.values()) {
+            petEndpoint
+                    .getPetByStatusTest(status);
+        }
     }
 
     @Test
     public void createPetTest() {
         PetModel petModel = new PetModel(
-                12032705,
+                12033005,
                 new CategoryModel(),
                 "Tobby",
                 new String[]{"www.zoo.com"},
                 new TagModel[]{new TagModel()},
                 "AVAILABLE");
 
-        RestAssured.given()
-                .log().uri()
-                //.header("Content-Type", "application/json")
-                .contentType("application/json")
-                .body(petModel)
-                .post(Config.CREATE_PET)
-                .then()
-                .log().all()
-                .statusCode(200);
+        petEndpoint
+                .createPetTest(petModel)
+                .statusCode(200)
+                .body("size()",is(6))
+                .body("any{it.value == 12033005}", is(true));
     }
-
 
     @Test
-    public void getPetbyStatus() {
+    public void deletePetTest() {
+        petEndpoint
+                .deletePetTest(12033005);
+    }
 
-        for (status petStatus : status.values()) {
+    @Test
+    public void updatePetTest(){
+        petModel.setName("Jack");
+        petModel.setStatus("PENDING");
 
-            RestAssured.given()
-                    .param("status", petStatus)
-                    .log().uri()
-                    .get(Config.GET_PET_BY_STATUS)
-                    .then()
-                    .log().all()
-                    .statusCode(200);
-        }
+        petEndpoint.updatePetTest(petModel)
+                .statusCode(200);
+//                .body("size()",is(6))
+//                .body("any{it.value == 'PENDING'}", is(true))
+//                .body("any{it.value == 'Jack'}", is(true));
+
+        petEndpoint
+                .getPetByIdTest(petModel.getId())
+                .statusCode(200)
+                .body("size()",is(6));
+    }
+
+    @Test
+    public void getOrderByIdTest(){
+int Id = 12033005;
+        storeEndPoint.getOrderByIdTest(Id)
+                .statusCode(200)
+                .body("size()",is(6));
+        //.body("any{it.value == 'PENDING'}", is(true))
+        //.body("any{it.value == 'Jack'}", is(true));
     }
 }
+
+
 
 
 
