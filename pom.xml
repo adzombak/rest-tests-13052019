@@ -21,8 +21,7 @@
             <artifactId>serenity-junit</artifactId>
             <version>2.0.50</version>
         </dependency>
-
-        <!-- to enable Serenity logging -->
+        <!-- https://mvnrepository.com/artifact/net.serenity-bdd/serenity-emailer -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
@@ -63,5 +62,33 @@
         </dependency>
 
     </dependencies>
-
+    <build>
+        <plugins>
+        <plugin>
+            <groupId>net.serenity-bdd.maven.plugins</groupId>
+            <artifactId>serenity-maven-plugin</artifactId>
+            <dependencies>
+                <dependency>
+                    <groupId>com.udc.rest-petstore.tests</groupId>
+                    <artifactId>rest-petstore.tests-13.05.2019</artifactId>
+                    <version>${project.version}</version>
+                </dependency>
+            </dependencies>
+            <configuration>
+                <!--suppress UnresolvedMavenProperty -->
+                <tags>${tags}</tags>
+                <reports>email</reports>
+            </configuration>
+            <executions>
+                <execution>
+                    <id>serenity-reports</id>
+                    <phase>post-integration-test</phase>
+                    <goals>
+                        <goal>aggregate</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+        </plugins>
+    </build>
 </project>

@@ -1,14 +1,18 @@
 package petstore.tests;
 
+import net.serenitybdd.junit.runners.SerenityRunner;
+import net.thucydides.core.annotations.Steps;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import petstore.endpoints.StoreEndPoint;
 import petstore.models.OrderModel;
 
 import static org.hamcrest.core.Is.is;
-
+@RunWith(SerenityRunner.class)
 public class PetOrderTest {
+    @Steps
     private StoreEndPoint storeEndPoint = new StoreEndPoint();
     private OrderModel orderModel;
 

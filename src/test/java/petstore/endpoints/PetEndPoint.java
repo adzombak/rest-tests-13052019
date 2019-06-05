@@ -1,6 +1,5 @@
 package petstore.endpoints;
 
-import io.restassured.RestAssured;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 import net.serenitybdd.rest.SerenityRest;
@@ -13,7 +12,7 @@ import petstore.models.PetModel;
 
 public class PetEndPoint {
     //Logger logger = Logger.getLogger(this.getClass().getName());
-    Logger logger = LoggerFactory.getLogger(PetEndPoint.class);
+    private Logger logger = LoggerFactory.getLogger(PetEndPoint.class);
 
     private RequestSpecification given() {
 SerenityRest.enableLoggingOfRequestAndResponseIfValidationFails();
@@ -51,8 +50,8 @@ SerenityRest.enableLoggingOfRequestAndResponseIfValidationFails();
         logger.info("Executing 'createPetTest'");
         return given().body(petModel)
                 .post(Config.CREATE_PET)
-                .then()
-                .log().all();
+                .then();
+                //.log().all();
     }
 
     @Step

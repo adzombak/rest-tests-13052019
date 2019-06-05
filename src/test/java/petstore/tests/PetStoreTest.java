@@ -59,7 +59,7 @@ public class PetStoreTest {
                 .deletePetTest(12033005);
     }
 
-    @Test
+/*    @Test
     public void updatePetTest(){
         petModel.setName("Jack");
         petModel.setStatus("PENDING");
@@ -74,9 +74,9 @@ public class PetStoreTest {
                 .getPetByIdTest(petModel.getId())
                 .statusCode(200)
                 .body("size()",is(6));
-    }
+    }*/
 
-    @Test
+    /*@Test
     public void getOrderByIdTest(){
 int Id = 13;
         storeEndPoint.getOrderByIdTest(Id)
@@ -84,7 +84,7 @@ int Id = 13;
                 .body("size()",is(6));
         //.body("any{it.value == 'PENDING'}", is(true))
         //.body("any{it.value == 'Jack'}", is(true));
-    }
+    }*/
 }
 
 
