@@ -2,11 +2,14 @@ package petstore.tests;
 
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Steps;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import petstore.endpoints.PetEndPoint;
 import petstore.endpoints.StoreEndPoint;
+import petstore.models.CategoryModel;
 import petstore.models.PetModel;
+import petstore.models.TagModel;
 
 @RunWith(SerenityRunner.class)
 public class PetStoreTest {
@@ -34,9 +37,10 @@ public class PetStoreTest {
     }
 
 /*    @Test
+    @Ignore
     public void createPetTest() {
         PetModel petModel = new PetModel(
-                12033005,
+                Integer.,
                 new CategoryModel(),
                 "Tobby",
                 new String[]{"www.zoo.com"},
@@ -51,12 +55,12 @@ public class PetStoreTest {
     }
 
     @Test
+    @Ignore
     public void deletePetTest() {
         petEndpoint
                 .deletePetTest(12033005);
     }*/
 }
-
 
 
 

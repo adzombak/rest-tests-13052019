@@ -1,4 +1,3 @@
-/*
 package petstore.tests;
 
 import io.restassured.RestAssured;
@@ -14,6 +13,7 @@ import petstore.models.TagModel;
 import static org.hamcrest.core.Is.is;
 
 @RunWith(SerenityRunner.class)
+@Ignore
 public class PetUpdateTest {
     @Steps
     private PetEndPoint petEndpoint = new PetEndPoint();
@@ -63,4 +63,4 @@ public class PetUpdateTest {
                 .statusCode(200)
                 .body("size()",is(6));
     }
-}*/
+}

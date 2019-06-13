@@ -1,10 +1,10 @@
+/*
 package petstore.tests;
 
 import net.serenitybdd.junit.runners.SerenityParameterizedRunner;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.junit.annotations.Concurrent;
-import net.thucydides.junit.annotations.Qualifier;
-import net.thucydides.junit.annotations.UseTestDataFrom;
+import net.thucydides.junit.annotations.TestData;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,42 +13,43 @@ import petstore.models.CategoryModel;
 import petstore.models.PetModel;
 import petstore.models.TagModel;
 
+import java.util.Arrays;
+import java.util.Collection;
+
 
 @RunWith(SerenityParameterizedRunner.class)
-@UseTestDataFrom(value = "src/test/java/petstore/tests/testdata/pets-spec.csv")
 @Concurrent(threads = "4")
-public class PetCreateTest {
+public class PetCreateCombinationTest {
 
-    private String petName;
-    private int petId;
-    private int statusCode;
-    @Steps
-    private PetEndPoint petEndPoint;
-    private PetModel petModel;
+    @TestData
+    public static Collection<Object[]> testData(){
+        return Arrays.asList(new Object[][]{
+                {"Jack", 12031006, 200},
+                {"Johnny" , 12031106, 200},
+                {"Rex", 12031206, 200}
+        });
+    }
 
-    public void setPetName(String petName) {
+    private final String petName;
+    private final int petId;
+    private final int statusCode;
+
+    public PetCreateTest(String petName, int petId, int statusCode) {
         this.petName = petName;
-    }
-
-    public void setPetID(int petId) {
         this.petId = petId;
-    }
-
-    public void setPetStatusCode(int statusCode) {
         this.statusCode = statusCode;
     }
 
-    @Qualifier
-    public String qualifier() {
-        return petName + "=>" + petId + "=>" + statusCode;
-    }
-
     @After
-    public void postCondition() {
+    public void postCondition(){
         petEndPoint
                 .deletePetTest(petId)
                 .statusCode(200);
     }
+
+    @Steps
+    private PetEndPoint petEndPoint;
+    private PetModel petModel;
 
     @Test
     public void createPetTest() {
@@ -63,4 +64,4 @@ public class PetCreateTest {
         petEndPoint.createPetTest(petModel)
                 .statusCode(this.statusCode);
     }
-}
+}*/
