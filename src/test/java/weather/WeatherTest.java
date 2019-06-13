@@ -3,20 +3,25 @@ package weather;
 
 import io.restassured.RestAssured;
 import io.restassured.response.ValidatableResponse;
-import io.restassured.specification.RequestSpecification;
+import net.serenitybdd.junit.runners.SerenityRunner;
+import net.serenitybdd.rest.SerenityRest;
+import net.thucydides.core.annotations.Step;
+import net.thucydides.core.annotations.Steps;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import static org.hamcrest.Matchers.is;
 
+@RunWith(SerenityRunner.class)
 public class WeatherTest {
-
+    @Steps
     private String cityId;
 
     @Test
     public void getWeatherPerCityTest() {
-        RestAssured.baseURI = "https://pinformer.sinoptik.ua/";
 
-        ValidatableResponse response = RestAssured.given()
+        RestAssured.baseURI = "https://pinformer.sinoptik.ua/";
+        ValidatableResponse response = SerenityRest.given()
                 .param("Lang", "ua")
                 .param("return_id", "1")
                 .param("q", "Lviv")
@@ -32,11 +37,10 @@ public class WeatherTest {
         System.out.println("City id = " + cityId);
 
 
-
         //get response with known ID
         RestAssured.baseURI = "https://pinformer.sinoptik.ua/";
 
-        ValidatableResponse responseWeather = RestAssured.given()
+        ValidatableResponse responseWeather = SerenityRest.given()
                 .param("type", "js")
                 .param("lang", "ua")
                 .param("id", cityId)
@@ -58,7 +62,7 @@ public class WeatherTest {
     public void postFastLoan() {
         RestAssured.baseURI = "https://fastloansystem.com/api/token";
 
-        ValidatableResponse response = RestAssured.given()
+        ValidatableResponse response = SerenityRest.given()
                 .param("login", "tehnoskarb_new_market")
                 .param("password", "hdu5K8hsu")
                 .param("grant_type", "password")
@@ -68,4 +72,5 @@ public class WeatherTest {
                 .statusCode(200);
 
     }
-}*/
+}
+*/

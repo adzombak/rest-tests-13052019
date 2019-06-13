@@ -3,8 +3,7 @@ package petstore.endpoints;
 class Config {
     final static String BASE_URI = "https://petstore.swagger.io/v2";
 
-    static int petID = 12032705;
-    static int petIdForUpdate = 12033005;
+    static int petID = 12033005;
 
 
 

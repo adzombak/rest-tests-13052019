@@ -1,3 +1,4 @@
+/*
 package petstore.tests;
 
 import io.restassured.RestAssured;
@@ -62,4 +63,4 @@ public class PetUpdateTest {
                 .statusCode(200)
                 .body("size()",is(6));
     }
-}
+}*/

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -8,87 +8,80 @@
     <artifactId>rest-petstore.tests-13.05.2019</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <serenity.version>2.0.50</serenity.version>
+        <jackson.databind.version>2.9.9</jackson.databind.version>
+        <slf4j.simple.version>1.7.26</slf4j.simple.version>
+        <hamcrest-matchers.version>1.8</hamcrest-matchers.version>
+        <surefire.version>2.20</surefire.version>
+<!--        <json.version>20180813</json.version>-->
+    </properties>
+
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
-        <dependency>
-            <groupId>net.serenity-bdd</groupId>
-            <artifactId>serenity-rest-assured</artifactId>
-            <version>2.0.50</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/net.serenity-bdd/serenity-junit -->
-        <dependency>
-            <groupId>net.serenity-bdd</groupId>
-            <artifactId>serenity-junit</artifactId>
-            <version>2.0.50</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/net.serenity-bdd/serenity-emailer -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>1.7.26</version>
-            <scope>test</scope>
-        </dependency>
 
-
-        <!-- https://mvnrepository.com/artifact/org.testinfected.hamcrest-matchers/all-matchers -->
-        <dependency>
-            <groupId>org.testinfected.hamcrest-matchers</groupId>
-            <artifactId>all-matchers</artifactId>
-            <version>1.8</version>
-            <type>pom</type>
-        </dependency>
-
-
-        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.9.9</version>
+            <version>${jackson.databind.version}</version>
         </dependency>
 
-
-        <!-- https://mvnrepository.com/artifact/junit/junit -->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-rest-assured</artifactId>
+            <version>${serenity.version}</version>
+        </dependency>
+
+        <!--to enable default Serenity logging-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.simple.version}</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20180813</version>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-junit</artifactId>
+            <version>${serenity.version}</version>
         </dependency>
 
     </dependencies>
+
+
     <build>
         <plugins>
-        <plugin>
-            <groupId>net.serenity-bdd.maven.plugins</groupId>
-            <artifactId>serenity-maven-plugin</artifactId>
-            <dependencies>
-                <dependency>
-                    <groupId>com.udc.rest-petstore.tests</groupId>
-                    <artifactId>rest-petstore.tests-13.05.2019</artifactId>
-                    <version>${project.version}</version>
-                </dependency>
-            </dependencies>
-            <configuration>
-                <!--suppress UnresolvedMavenProperty -->
-                <tags>${tags}</tags>
-                <reports>email</reports>
-            </configuration>
-            <executions>
-                <execution>
-                    <id>serenity-reports</id>
-                    <phase>post-integration-test</phase>
-                    <goals>
-                        <goal>aggregate</goal>
-                    </goals>
-                </execution>
-            </executions>
-        </plugin>
+            <plugin>
+                <groupId>net.serenity-bdd.maven.plugins</groupId>
+                <artifactId>serenity-maven-plugin</artifactId>
+                <version>${serenity.version}</version>
+                <executions>
+                    <execution>
+                        <id>serenity-reports</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>aggregate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${surefire.version}</version>
+                <configuration>
+                    <testFailureIgnore>true</testFailureIgnore>
+                    <skip>false</skip>
+                </configuration>
+            </plugin>
+            <!--<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+            </plugin>-->
+
+
         </plugins>
     </build>
 </project>

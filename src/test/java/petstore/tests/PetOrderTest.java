@@ -1,3 +1,4 @@
+/*
 package petstore.tests;
 
 import net.serenitybdd.junit.runners.SerenityRunner;
@@ -51,28 +52,4 @@ public class PetOrderTest {
                 .body("size()",is(6))
                 .body("status", is("placed"));
     }
-}
-
-
-
-
-//    @Test
-//    public void getOrderByPetIdTest(){
-//        int petId = orderModel.getPetId();
-////        storeEndPoint.getOrderByIdTest(orderModel.getId())
-////                .statusCode(200)
-////                .body("size()",is(6))
-////                .body("status", is("placed"));
-//        storeEndPoint.getOrderByPetIdTest(petId)
-//                .statusCode(200);
-//    }
-
-//    @After
-//    public void posCondition() {
-//        storeEndPoint
-//                .deleteOrderTest(orderModel.getId())
-//                .statusCode(200);
-////        storeEndPoint.getOrderByIdTest(orderModel.getId())
-////                .statusCode(404)
-////                .body("any{it.value == 'Pet not found'}", is(true));
-//    }
+}*/

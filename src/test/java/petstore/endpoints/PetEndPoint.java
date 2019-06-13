@@ -36,6 +36,7 @@ SerenityRest.enableLoggingOfRequestAndResponseIfValidationFails();
         PENDING,
         SOLD
     }
+
     @Step
     public ValidatableResponse getPetByStatusTest(Status status) {
         return given()
