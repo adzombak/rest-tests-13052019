@@ -1,8 +1,8 @@
-/*
 package petstore.tests;
 
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Steps;
+import net.thucydides.junit.annotations.Concurrent;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,6 +12,7 @@ import petstore.models.OrderModel;
 
 import static org.hamcrest.core.Is.is;
 @RunWith(SerenityRunner.class)
+@Concurrent
 public class PetOrderTest {
     @Steps
     private StoreEndPoint storeEndPoint = new StoreEndPoint();
@@ -22,7 +23,7 @@ public class PetOrderTest {
     public void preCondition(){
         orderModel = new OrderModel(
                 13,
-                12033005,
+                12031906,
                 2,
                 "2019-06-03T04:56:15.934+0000",
                 "placed",
@@ -52,4 +53,4 @@ public class PetOrderTest {
                 .body("size()",is(6))
                 .body("status", is("placed"));
     }
-}*/
+}

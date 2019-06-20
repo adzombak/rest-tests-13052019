@@ -34,7 +34,7 @@ public class PetCreateCombinationTest {
     private final int petId;
     private final int statusCode;
 
-    public PetCreateTest(String petName, int petId, int statusCode) {
+    public createPetTest(String petName, int petId, int statusCode) {
         this.petName = petName;
         this.petId = petId;
         this.statusCode = statusCode;
@@ -64,4 +64,5 @@ public class PetCreateCombinationTest {
         petEndPoint.createPetTest(petModel)
                 .statusCode(this.statusCode);
     }
-}*/
+}
+*/

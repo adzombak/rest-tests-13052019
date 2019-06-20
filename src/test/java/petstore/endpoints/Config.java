@@ -16,4 +16,5 @@ class Config {
     final static String CREATE_ORDER = "/store/order";
     final static String DELETE_ORDER = "/store/order/{orderId}";
     final static String FIND_ORDER_BY_ID = "/store/order/{orderId}";
+    final static String UPLOAD_IMAGE_BY_ID = "/pet/{petId}/uploadImage";
 }

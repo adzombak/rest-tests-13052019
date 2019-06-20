@@ -7,6 +7,7 @@ import net.thucydides.core.annotations.Step;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import petstore.models.PetModel;
+import java.io.File;
 
 
 
@@ -69,5 +70,14 @@ SerenityRest.enableLoggingOfRequestAndResponseIfValidationFails();
                .put(Config.UPDATE_PET)
                 .then();
         //.log().all();
+    }
+
+    @Step
+    public ValidatableResponse uploadPetPhotoTest(int petId, File file){
+        return given()
+                .contentType("multipart/form-data")
+                .multiPart(file)
+                .post(Config.UPLOAD_IMAGE_BY_ID,petId)
+                .then();
     }
 }

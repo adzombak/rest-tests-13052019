@@ -1,8 +1,10 @@
+/*
 package petstore.tests;
 
 import io.restassured.RestAssured;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Steps;
+import net.thucydides.junit.annotations.Concurrent;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import petstore.endpoints.PetEndPoint;
@@ -13,6 +15,7 @@ import petstore.models.TagModel;
 import static org.hamcrest.core.Is.is;
 
 @RunWith(SerenityRunner.class)
+@Concurrent
 @Ignore
 public class PetUpdateTest {
     @Steps
@@ -64,3 +67,4 @@ public class PetUpdateTest {
                 .body("size()",is(6));
     }
 }
+*/

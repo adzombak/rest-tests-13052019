@@ -1,4 +1,3 @@
-/*
 package weather;
 
 import io.restassured.RestAssured;
@@ -7,12 +6,14 @@ import net.serenitybdd.junit.runners.SerenityRunner;
 import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.Steps;
+import net.thucydides.junit.annotations.Concurrent;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static org.hamcrest.Matchers.is;
 
 @RunWith(SerenityRunner.class)
+@Concurrent
 public class WeatherTest {
     @Steps
     private String cityId;
@@ -73,4 +74,3 @@ public class WeatherTest {
 
     }
 }
-*/
